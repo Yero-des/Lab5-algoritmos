@@ -13,9 +13,11 @@ const ejecutarMenu = (array) => {
   console.log("1. Ordenar por nombre");
   console.log("2. Ordenar por edad");
   console.log("3. Ordenar por tipo");
-  console.log("4. Salir");
+  console.log("4. Buscar por nombre");
+  console.log("5. Buscar por tipo");
+  console.log("6. Salir");
 
-  rl.question("Selecciona una opción (1/2/3): ", (opcion) =>  {
+  rl.question("Selecciona una opción (1/2/3/4/5/6): ", (opcion) =>  {
 
     switch (opcion) {
       case "1":
@@ -26,14 +28,21 @@ const ejecutarMenu = (array) => {
         break ;
       case "3":
         console.log(sortByValue(array, "type"));
+        break ;
       case "4":
+        console.log("Buscar por nombre");
+        break ;
+      case "5":
+        console.log("Buscar por tipo");
+        break ;
+      case "6":
         console.log("Saliendo del programa");
         return rl.close();
       default:
         console.log("Opción no válida");
     }
 
-    if (opcion !== "4") {
+    if (opcion !== "6") {
       ejecutarMenu(array); 
     }
     
