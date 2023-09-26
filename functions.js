@@ -19,7 +19,7 @@ const sortByValue = (array, prop) => {
 
 const searchByName = (array, search, prop) => {      
 
-  const temp = array.filter((mascota) => mascota[prop].toLowerCase() === search.toString().toLowerCase());
+  const temp = array.filter((mascota) => mascota[prop].toString().toLowerCase() === search.toString().toLowerCase());
 
   if (temp.length !== 0) {
     return temp;

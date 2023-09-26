@@ -31,23 +31,20 @@ const ejecutarMenu = (array) => {
         console.log(sortByValue(array, "type"));
         break ;
       case "4":
-        rl.question("Ingresa un nombre a buscar: ", (search) => {
+        return rl.question("Ingresa un nombre a buscar: ", (search) => {
           console.log(searchByName(array, search, "name"));
-          rl.close(); 
-        });        
-        break;      
+          return ejecutarMenu(array)
+        });    
       case "5":
-        rl.question("Ingresa un tipo de animal a buscar: ", (search) => {
+        return rl.question("Ingresa un tipo de animal a buscar: ", (search) => {
           console.log(searchByName(array, search, "type"));
-          rl.close();
+          return ejecutarMenu(array)
         });  
-        break; 
       case "6": 
-        rl.question("Ingresa una edad a buscar: ", (search) => {
+        return rl.question("Ingresa una edad a buscar: ", (search) => {
           console.log(searchByName(array, search, "age"));
-          rl.close();
+          return ejecutarMenu(array)
         });  
-        break; 
       case "7":
         console.log("Saliendo del programa");
         return rl.close();
