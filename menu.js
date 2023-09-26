@@ -1,5 +1,5 @@
 const readline = require('readline');
-const { sortByValue } = require('./sort');
+const { sortByValue, searchByName } = require('./functions');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -15,7 +15,8 @@ const ejecutarMenu = (array) => {
   console.log("3. Ordenar por tipo");
   console.log("4. Buscar por nombre");
   console.log("5. Buscar por tipo");
-  console.log("6. Salir");
+  console.log("6. Buscar por edad");
+  console.log("7. Salir");
 
   rl.question("Selecciona una opción (1/2/3/4/5/6): ", (opcion) =>  {
 
@@ -30,21 +31,35 @@ const ejecutarMenu = (array) => {
         console.log(sortByValue(array, "type"));
         break ;
       case "4":
-        console.log("Buscar por nombre");
-        break ;
+        rl.question("Ingresa un nombre a buscar: ", (search) => {
+          console.log(searchByName(array, search, "name"));
+          rl.close(); 
+        });        
+        break;      
       case "5":
-        console.log("Buscar por tipo");
-        break ;
-      case "6":
+        rl.question("Ingresa un tipo de animal a buscar: ", (search) => {
+          console.log(searchByName(array, search, "type"));
+          rl.close();
+        });  
+        break; 
+      case "6": 
+        rl.question("Ingresa una edad a buscar: ", (search) => {
+          console.log(searchByName(array, search, "age"));
+          rl.close();
+        });  
+        break; 
+      case "7":
         console.log("Saliendo del programa");
         return rl.close();
       default:
         console.log("Opción no válida");
     }
 
-    if (opcion !== "6") {
-      ejecutarMenu(array); 
+    if (opcion !== "7") {
+      return ejecutarMenu(array)
     }
+
+    rs.close();
     
   });
 
@@ -62,6 +77,3 @@ const array = [
 
 
 ejecutarMenu(array);
-
-
-

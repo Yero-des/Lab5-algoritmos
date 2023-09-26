@@ -17,4 +17,15 @@ const sortByValue = (array, prop) => {
   return array;
 }
 
-module.exports = { sortByValue };
+const searchByName = (array, search, prop) => {      
+
+  const temp = array.filter((mascota) => mascota[prop].toLowerCase() === search.toString().toLowerCase());
+
+  if (temp.length !== 0) {
+    return temp;
+  } else {
+    return "Información no existe";
+  }
+}
+
+module.exports = { sortByValue, searchByName };
