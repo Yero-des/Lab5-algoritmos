@@ -1,23 +1,10 @@
 const readline = require('readline');
+const { sortByValue } = require('./sort');
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
-function seleccionarOpcion(opcion, array) {
-  switch (opcion) {
-    case "1":
-      break;
-    case "2":
-      break;
-    case "3":
-      console.log("Saliendo del programa");
-      return;
-    default:
-      console.log("Opción no válida");
-  }
-}
 
 const ejecutarMenu = (array) => {
 
@@ -25,26 +12,45 @@ const ejecutarMenu = (array) => {
   console.log("-------------------");
   console.log("1. Ordenar por nombre");
   console.log("2. Ordenar por edad");
-  console.log("3. Salir");
+  console.log("3. Ordenar por tipo");
+  console.log("4. Salir");
 
   rl.question("Selecciona una opción (1/2/3): ", (opcion) =>  {
 
-    seleccionarOpcion(opcion, array);
-    if (opcion == "3") {
-      return rl.close();
+    switch (opcion) {
+      case "1":
+        console.log(sortByValue(array, "name"));
+        break;
+      case "2":
+        console.log(sortByValue(array, "age"));
+        break ;
+      case "3":
+        console.log(sortByValue(array, "type"));
+      case "4":
+        console.log("Saliendo del programa");
+        return rl.close();
+      default:
+        console.log("Opción no válida");
     }
-    ejecutarMenu(array); 
+
+    if (opcion !== "4") {
+      ejecutarMenu(array); 
+    }
     
   });
 
 }
 
 const array = [
-  {
-    id: 1,
-    name: "Doggy",
-  }
-]
+  { id: 1, name: "Luna", age: 3, type: "Perro" },
+  { id: 2, name: "Milo", age: 4, type: "Perro" },
+  { id: 3, name: "Simba", age: 2, type: "Gato" },
+  { id: 4, name: "Bella", age: 5, type: "Perro" },
+  { id: 5, name: "Lola", age: 1, type: "Gato" },
+  { id: 6, name: "Bruno", age: 2, type: "Perro" },
+  { id: 7, name: "Mia", age: 3, type: "Gato" }
+];
+
 
 ejecutarMenu(array);
 

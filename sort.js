@@ -1,9 +1,9 @@
-function ordenamientoBurbuja(array) {
+const sortByValue = (array, prop) => {
   var orden;
   do {
     orden = false;
     for (var i = 0; i < array.length - 1; i++) {
-      if (array[i] > array[i + 1]) {
+      if (array[i][prop] > array[i + 1][prop]) {
 
         // Intercambiar elementos si están en el orden incorrecto
         var temp = array[i]; // Generamos una variable temporal
@@ -16,3 +16,5 @@ function ordenamientoBurbuja(array) {
   } while (orden);
   return array;
 }
+
+module.exports = { sortByValue };
