@@ -27,30 +27,18 @@ const ejecutarMenu = (array) => {
         break;
       case "2":
         console.log(sortByValue(array, "age"));
-        break ;
+        break;
       case "3":
         console.log(sortByValue(array, "type"));
-        break ;
+        break;
       case "4":
-        return rl.question("Ingresa un nombre a buscar: ", (search) => {
-          console.log(searchByValue(array, search, "name"));
-          return ejecutarMenu(array)
-        });    
+        return searchByValue(array, rl, "name", ejecutarMenu);
       case "5":
-        return rl.question("Ingresa un tipo de animal a buscar: ", (search) => {
-          console.log(searchByValue(array, search, "type"));
-          return ejecutarMenu(array)
-        });  
+        return searchByValue(array, rl, "type", ejecutarMenu);  
       case "6": 
-        return rl.question("Ingresa una edad a buscar: ", (search) => {
-          console.log(searchByValue(array, search, "age"));
-          return ejecutarMenu(array)
-        });  
+        return searchByValue(array, rl, "age", ejecutarMenu);
       case "7": 
-        return rl.question("Ingrese el ID para obtener el nombre: ", (id) => {
-          console.log(startSearch(array, id));
-          return ejecutarMenu(array)
-        });
+        return startSearch(array, rl, ejecutarMenu);
       case "8":
         console.log("Saliendo del programa");
         return rl.close();
@@ -61,8 +49,6 @@ const ejecutarMenu = (array) => {
     if (opcion !== "8") {
       return ejecutarMenu(array)
     }
-
-    rs.close();
     
   });
 

@@ -1,5 +1,3 @@
-const readline = require('readline');
-
 const sortByValue = (array, prop) => {
   var orden;
   do {
@@ -19,19 +17,27 @@ const sortByValue = (array, prop) => {
   return array;
 }
 
-const searchByValue = (array, search, prop) => {      
+const searchByValue = (array, rl, prop, ejecutarMenu) => { 
+    
+  rl.question("Ingresa un nombre a buscar: ", (search) => {
 
-  if (search.toLowerCase() === 'exit') {
-    return "Operacion cancelada"
-  }
+    if (search.toLowerCase() === "exit") {      
+      console.log("Operacion finalizada")
+      return ejecutarMenu(array);
+    }
+    
+    const temp = array.filter((mascota) => mascota[prop].toString().toLowerCase() === search.toString().toLowerCase());
+    
+    if (temp.length !== 0) {
+      console.log(temp);
+    } else {
+      console.log("Información no encontrada");
+    }
+    
+    return searchByValue(array, rl, prop, ejecutarMenu);
 
-  const temp = array.filter((mascota) => mascota[prop].toString().toLowerCase() === search.toString().toLowerCase());
+  });
 
-  if (temp.length !== 0) {
-    return temp;
-  } else {
-    return "Información no existe";
-  }
 
 }
 
@@ -40,18 +46,26 @@ const searchById = (id, array) => {
   return elemento ? elemento.name : null;
 }
 
-const startSearch = (array, id) => {
+const startSearch = (array, rl, ejecutarMenu) => {
 
-  if (id.toLowerCase() === 'exit') {
-    return "Operacion cancelada"
-  } else {
+  rl.question("Ingrese el ID para obtener el nombre: ", (id) => {
+
+    if (id.toLowerCase() === "exit") {      
+      console.log("Operacion finalizada")
+      return ejecutarMenu(array);
+    }
+
     const nombre = searchById(parseInt(id), array);
     if (nombre) {
-      return `El nombre correspondiente al ID ${id} es: ${nombre}`
+      console.log(`El nombre correspondiente al ID ${id} es: ${nombre}`)
     } else {
-      return `No se encontró un elemento con el ID ${id}`
+      console.log(`No se encontró un elemento con el ID ${id}`)
     }
-  }
+
+    return startSearch(array, rl, ejecutarMenu);
+
+  });
+
 
 }
 
