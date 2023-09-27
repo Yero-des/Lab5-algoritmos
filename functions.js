@@ -17,9 +17,9 @@ const sortByValue = (array, prop) => {
   return array;
 }
 
-const searchByValue = (array, rl, prop, ejecutarMenu) => { 
+const searchByValue = (array, rl, prop, sentence, ejecutarMenu) => { 
     
-  rl.question("Ingresa un nombre a buscar: ", (search) => {
+  rl.question(sentence, (search) => {
 
     if (search.toLowerCase() === "exit") {      
       console.log("Operacion finalizada")
@@ -34,7 +34,7 @@ const searchByValue = (array, rl, prop, ejecutarMenu) => {
       console.log("Información no encontrada");
     }
     
-    return searchByValue(array, rl, prop, ejecutarMenu);
+    return searchByValue(array, rl, prop, sentence, ejecutarMenu);
 
   });
 

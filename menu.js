@@ -32,11 +32,11 @@ const ejecutarMenu = (array) => {
         console.log(sortByValue(array, "type"));
         break;
       case "4":
-        return searchByValue(array, rl, "name", ejecutarMenu);
+        return searchByValue(array, rl, "name", "Ingresa un nombre a buscar: ", ejecutarMenu);
       case "5":
-        return searchByValue(array, rl, "type", ejecutarMenu);  
+        return searchByValue(array, rl, "type", "Ingresa un tipo de animal a buscar: ", ejecutarMenu);  
       case "6": 
-        return searchByValue(array, rl, "age", ejecutarMenu);
+        return searchByValue(array, rl, "age", "Ingresa una edad a buscar: ", ejecutarMenu);
       case "7": 
         return startSearch(array, rl, ejecutarMenu);
       case "8":
