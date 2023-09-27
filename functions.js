@@ -51,7 +51,6 @@ const startSearch = (array, id) => {
     } else {
       return `No se encontró un elemento con el ID ${id}`
     }
-    startSearch(array, id);
   }
 
 }
