@@ -1,5 +1,5 @@
 const readline = require('readline');
-const { sortByValue, searchByName } = require('./functions');
+const { sortByValue, searchByValue, startSearch } = require('./functions');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -16,9 +16,10 @@ const ejecutarMenu = (array) => {
   console.log("4. Buscar por nombre");
   console.log("5. Buscar por tipo");
   console.log("6. Buscar por edad");
-  console.log("7. Salir");
+  console.log("7. Buscar por ID");
+  console.log("8. Salir");
 
-  rl.question("Selecciona una opción (1/2/3/4/5/6): ", (opcion) =>  {
+  rl.question("Selecciona una opción (1/2/3/4/5/6/7): ", (opcion) =>  {
 
     switch (opcion) {
       case "1":
@@ -32,27 +33,32 @@ const ejecutarMenu = (array) => {
         break ;
       case "4":
         return rl.question("Ingresa un nombre a buscar: ", (search) => {
-          console.log(searchByName(array, search, "name"));
+          console.log(searchByValue(array, search, "name"));
           return ejecutarMenu(array)
         });    
       case "5":
         return rl.question("Ingresa un tipo de animal a buscar: ", (search) => {
-          console.log(searchByName(array, search, "type"));
+          console.log(searchByValue(array, search, "type"));
           return ejecutarMenu(array)
         });  
       case "6": 
         return rl.question("Ingresa una edad a buscar: ", (search) => {
-          console.log(searchByName(array, search, "age"));
+          console.log(searchByValue(array, search, "age"));
           return ejecutarMenu(array)
         });  
-      case "7":
+      case "7": 
+        return rl.question("Ingrese el ID para obtener el nombre: ", (id) => {
+          console.log(startSearch(array, id));
+          return ejecutarMenu(array)
+        });
+      case "8":
         console.log("Saliendo del programa");
         return rl.close();
       default:
         console.log("Opción no válida");
     }
 
-    if (opcion !== "7") {
+    if (opcion !== "8") {
       return ejecutarMenu(array)
     }
 

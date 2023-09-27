@@ -1,3 +1,5 @@
+const readline = require('readline');
+
 const sortByValue = (array, prop) => {
   var orden;
   do {
@@ -17,7 +19,11 @@ const sortByValue = (array, prop) => {
   return array;
 }
 
-const searchByName = (array, search, prop) => {      
+const searchByValue = (array, search, prop) => {      
+
+  if (search.toLowerCase() === 'exit') {
+    return "Operacion cancelada"
+  }
 
   const temp = array.filter((mascota) => mascota[prop].toString().toLowerCase() === search.toString().toLowerCase());
 
@@ -26,6 +32,29 @@ const searchByName = (array, search, prop) => {
   } else {
     return "Información no existe";
   }
+
 }
 
-module.exports = { sortByValue, searchByName };
+const searchById = (id, array) => {
+  const elemento = array.find(item => item.id === id);
+  return elemento ? elemento.name : null;
+}
+
+const startSearch = (array, id) => {
+
+  if (id.toLowerCase() === 'exit') {
+    return "Operacion cancelada"
+  } else {
+    const nombre = searchById(parseInt(id), array);
+    if (nombre) {
+      return `El nombre correspondiente al ID ${id} es: ${nombre}`
+    } else {
+      return `No se encontró un elemento con el ID ${id}`
+    }
+    startSearch(array, id);
+  }
+
+}
+
+
+module.exports = { sortByValue, searchByValue, startSearch};
