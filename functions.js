@@ -1,40 +1,48 @@
 const sortByValue = (array, prop) => {
   var orden;
   do {
-    orden = false;
-    for (var i = 0; i < array.length - 1; i++) {
+
+    orden = false; // Se asigna el orden como false
+
+    for (var i = 0; i < array.length - 1; i++) { // Se itera entre todos los valores del array
+
       if (array[i][prop] > array[i + 1][prop]) {
 
+        // [5, 3, ...] Se toma dos valores dentro del array
         // Intercambiar elementos si están en el orden incorrecto
-        var temp = array[i]; // Generamos una variable temporal
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-        orden = true;
+        var temp = array[i]; // Generamos una variable temporal "5"
+        array[i] = array[i + 1]; // Se baja el elemento siguiente una posicion [3, ... ]
+        array[i + 1] = temp; // Se sube el elemento actual una posicion [3, 5, ...]
+        orden = true; // Se cambia el orden a true
 
       }
+
     }
-  } while (orden);
+
+  } while (orden); // El bucle do while se termina cuando todos los elementos esten ordenados
+
   return array;
 }
 
 const searchByValue = (array, rl, prop, sentence, ejecutarMenu) => { 
     
-  rl.question(sentence, (search) => {
+  rl.question(sentence, (search) => { // Utilizamos la constante rl para recibir datos por consola
 
-    if (search.toLowerCase() === "exit") {      
+    if (search.toLowerCase() === "exit") {  // Si se escribe exit se ejecuta nuevamente la funcion recursiva ejecutarMenu    
       console.log("Operacion finalizada")
       return ejecutarMenu(array);
     }
     
+    // Se le asigna una variable temporal el array filtrado segun lo ingresado en consola
     const temp = array.filter((mascota) => mascota[prop].toString().toLowerCase() === search.toString().toLowerCase());
     
-    if (temp.length !== 0) {
+    if (temp.length !== 0) { // Si la array no esta vacia se imprime
       console.log(temp);
-    } else {
+    } else { // Si la array esta vacia imprime un mensaje
       console.log("Información no encontrada");
     }
     
-    return searchByValue(array, rl, prop, sentence, ejecutarMenu);
+    return searchByValue(array, rl, prop, sentence, ejecutarMenu); // Se ejecuta la funcion de forma recursiva con datos iguales
 
   });
 
