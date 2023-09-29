@@ -1,4 +1,4 @@
-const sortByValue = (array, prop) => {
+const sortByValueBurble = (array, prop) => {
   var orden;
   do {
 
@@ -23,6 +23,27 @@ const sortByValue = (array, prop) => {
 
   return array;
 }
+
+const SortByValueInsert = (array, prop) => {
+
+  for (let i = 1; i < array.length; i++) { // Se hace una iterado entre los elementos del array comenzando con 1
+
+    const current = array[i]; // Se asigna el elemento actual empezando con array[1]
+    let j = i - 1; // Se declara j que es un menor a i en uno
+
+    // [5, 3, ...] Se toma dos valores dentro del array
+    // 5 > 3
+    while (j >= 0 && array[j][prop] > current[prop]) { // Se hace un iterado entre las propiedades hasta que se ordene
+      array[j + 1] = array[j]; 
+      j--; 
+    }
+
+    array[j + 1] = current; // Se sube el elemento de j una posicion [ 3 , 5, .....]
+  }
+
+  return array;
+
+};
 
 const searchByValue = (array, rl, prop, sentence, ejecutarMenu) => { 
     
@@ -78,4 +99,4 @@ const startSearch = (array, rl, ejecutarMenu) => {
 }
 
 
-module.exports = { sortByValue, searchByValue, startSearch};
+module.exports = { sortByValueBurble, SortByValueInsert, searchByValue, startSearch};
