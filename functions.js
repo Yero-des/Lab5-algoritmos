@@ -31,14 +31,12 @@ const SortByValueInsert = (array, prop) => {
     const current = array[i]; // Se asigna el elemento actual empezando con array[1]
     let j = i - 1; // Se declara j que es un menor a i en uno
 
-    // [5, 3, ...] Se toma dos valores dentro del array
-    // 5 > 3
     while (j >= 0 && array[j][prop] > current[prop]) { // Se hace un iterado entre las propiedades hasta que se ordene
-      array[j + 1] = array[j]; 
+      array[j + 1] = array[j]; // Se baja el elemento de j una posicion [ 3 , 5, .....]
       j--; 
     }
 
-    array[j + 1] = current; // Se sube el elemento de j una posicion [ 3 , 5, .....]
+    array[j + 1] = current; 
   }
 
   return array;
